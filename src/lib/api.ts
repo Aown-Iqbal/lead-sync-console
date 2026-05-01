@@ -66,6 +66,19 @@ export const api = {
   clearAll: () => req<void>("/leads/all", { method: "DELETE" }),
 };
 
+// Extended API — scraper, ads, voice
+Object.assign(api, {
+  scraperJobs: () => req<any[]>("/scraper/jobs"),
+  scraperResults: (id: string) => req<any[]>(`/scraper/jobs/${id}/results`),
+  scraperStart: (data: any) => req<any>("/scraper/start", { method: "POST", body: JSON.stringify(data) }),
+  adsStart: (data: any) => req<any>("/ads-scraper/start", { method: "POST", body: JSON.stringify(data) }),
+  adsResults: (id: string) => req<any[]>(`/ads-scraper/jobs/${id}/results`),
+  clearScraperJobs: () => req<void>("/scraper/jobs", { method: "DELETE" }),
+  voiceGenerate: (data: any) => req<any>("/voice/generate", { method: "POST", body: JSON.stringify(data) }),
+  voiceSend: (phone: string) => req<any>(`/voice/send/${encodeURIComponent(phone)}`, { method: "POST" }),
+  voiceHistory: () => req<any[]>("/voice/history"),
+} as Record<string, any>);
+
 export function relativeTime(iso?: string): string {
   if (!iso) return "—";
   const d = new Date(iso).getTime();
