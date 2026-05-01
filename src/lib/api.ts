@@ -64,20 +64,19 @@ export const api = {
     }),
   settings: () => req<SettingsData>("/settings"),
   clearAll: () => req<void>("/leads/all", { method: "DELETE" }),
-};
-
-// Extended API — scraper, ads, voice
-Object.assign(api, {
+  // Scraper
   scraperJobs: () => req<any[]>("/scraper/jobs"),
   scraperResults: (id: string) => req<any[]>(`/scraper/jobs/${id}/results`),
   scraperStart: (data: any) => req<any>("/scraper/start", { method: "POST", body: JSON.stringify(data) }),
+  // Ads
   adsStart: (data: any) => req<any>("/ads-scraper/start", { method: "POST", body: JSON.stringify(data) }),
   adsResults: (id: string) => req<any[]>(`/ads-scraper/jobs/${id}/results`),
   clearScraperJobs: () => req<void>("/scraper/jobs", { method: "DELETE" }),
+  // Voice
   voiceGenerate: (data: any) => req<any>("/voice/generate", { method: "POST", body: JSON.stringify(data) }),
   voiceSend: (phone: string) => req<any>(`/voice/send/${encodeURIComponent(phone)}`, { method: "POST" }),
   voiceHistory: () => req<any[]>("/voice/history"),
-} as Record<string, any>);
+};
 
 export function relativeTime(iso?: string): string {
   if (!iso) return "—";
