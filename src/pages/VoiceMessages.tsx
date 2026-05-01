@@ -21,7 +21,7 @@ const VoiceMessages = () => {
     queryKey: ["voice-history"],
     queryFn: api.voiceHistory,
     refetchInterval: 5000,
-  });
+  }) as { data: any[] };
 
   const generate = useMutation({
     mutationFn: () => api.voiceGenerate({ phone: selectedLead, script, voice, speed }),

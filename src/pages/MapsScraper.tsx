@@ -17,13 +17,13 @@ const MapsScraper = () => {
     queryKey: ["scraper-jobs"],
     queryFn: api.scraperJobs,
     refetchInterval: 5000,
-  });
+  }) as { data: any[] };
 
   const { data: results = [] } = useQuery({
     queryKey: ["scraper-results", selectedJob],
     queryFn: () => api.scraperResults(selectedJob!),
     enabled: !!selectedJob,
-  });
+  }) as { data: any[] };
 
   const startScrape = useMutation({
     mutationFn: () => api.scraperStart({ query, city, filter_junk: filterJunk, skip_no_phone: skipNoPhone, max_results: maxResults }),
