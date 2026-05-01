@@ -29,14 +29,14 @@ export function ModeToggle({ phone, mode }: Props) {
         e.stopPropagation();
         mut.mutate(next);
       }}
-      className={`inline-flex items-center gap-1.5 px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider border rounded-sm transition-colors ${
+      className={`inline-flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-medium rounded-full transition-colors ${
         isAi
-          ? "border-primary/30 text-primary bg-primary/10 hover:bg-primary/20"
-          : "border-amber/30 text-amber bg-amber/10 hover:bg-amber/20"
+          ? "text-primary bg-primary/10 hover:bg-primary/20"
+          : "text-amber bg-amber/10 hover:bg-amber/20"
       } disabled:opacity-50`}
     >
-      <span className="w-1 h-1 rounded-full bg-current" />
-      {mode}
+      <span className="w-1.5 h-1.5 rounded-full bg-current" />
+      {mode.toUpperCase()}
     </button>
   );
 }
